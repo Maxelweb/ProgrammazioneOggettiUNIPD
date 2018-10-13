@@ -2,7 +2,7 @@
 
 persona::persona()
 {
-    Nome = "conosciuto";
+    Nome = "sconosciuto";
     AnnoNascita = 0;
     AnnoMorte = 0;
 }
