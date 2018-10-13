@@ -6,6 +6,7 @@
 
 // Costruttori
 
+
 orario::orario(){
     sec = 0;
 }
@@ -20,19 +21,30 @@ orario::orario(int o, int m, int s){
     else sec = o*3600 + m*60 + s;
 }
 
-int orario::Ore()
+int orario::Ore() const
 {
     return sec/3600;
 }
 
-int orario::Minuti()
+int orario::Minuti() const
 {
     return (sec/60) % 60;
 }
 
-int orario::Secondi()
+int orario::Secondi() const
 {
     return (sec%60);
 }
 
+orario orario::operator+(orario o)
+{
+    orario aux;
+    aux.sec = (sec + o.sec) % 86400;
+    return aux;
+}
 
+
+ostream& operator<<(ostream& os, const orario &o)
+{
+    return os << o.Ore() << ":" << o.Minuti() << ":" << o.Secondi();
+}
