@@ -8,25 +8,24 @@
     Classe "punto" in uno spazio tridimensionale
 */
 
-
-class point
+class Point
 {
     private:
         double x, y, z;
 
     public:
         // point();
-        point(double = 0, double = 0, double = 0);
+        Point(double = 0, double = 0, double = 0);
         void negate(); // Trasforma un punto nel suo opposto
-        double norm(); // restituisce la distanza di un punto dall'origine
-        void print(); // Stampa le coordinate di un punto --> faccio anche un override del cout
-        double getX();
-        double getY();
-        double getZ();
+        double norm() const; // restituisce la distanza di un punto dall'origine
+        // void print(); // Stampa le coordinate di un punto --> faccio direttamente override del cout
+        double getX() const;
+        double getY() const;
+        double getZ() const;
 };
 
-std::ostream& operator<<(ostream& os, const point&);
-point operator + (const point&, const point&); // override della somma
+std::ostream& operator<<(std::ostream&, const Point&);
+Point operator + (const Point&, const Point&); // override della somma
 
 
 #endif
