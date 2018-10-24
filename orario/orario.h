@@ -13,7 +13,9 @@ class orario
         int Ore() const;
         int Minuti() const;
         int Secondi() const;
+        int getSec() const;
         orario operator+(orario); // overloading for sum
+        bool operator==(const orario&) const; // overloading for ==
     private:
         int sec;
 };

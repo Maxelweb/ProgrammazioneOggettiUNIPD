@@ -2,7 +2,7 @@
 #include "orario.h"
 
 
-int main(int argc, char *argv[])
+int main()
 {
     orario mezzanotte(12,25,30);
 
@@ -21,5 +21,9 @@ int main(int argc, char *argv[])
     cout << (mezzanotte+adesso).Secondi() << endl;
 
     cout << adesso << endl;
+
+    if(adesso == adesso) cout << '1' << endl;
+
+    orario test;
 
 }

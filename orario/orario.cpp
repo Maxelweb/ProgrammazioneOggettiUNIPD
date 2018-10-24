@@ -36,6 +36,11 @@ int orario::Secondi() const
     return (sec%60);
 }
 
+int orario::getSec() const
+{
+    return sec;
+}
+
 orario orario::operator+(orario o)
 {
     orario aux;
@@ -43,6 +48,10 @@ orario orario::operator+(orario o)
     return aux;
 }
 
+bool orario::operator==(const orario& o) const
+{
+    return sec == o.getSec();
+}
 
 ostream& operator<<(ostream& os, const orario &o)
 {
