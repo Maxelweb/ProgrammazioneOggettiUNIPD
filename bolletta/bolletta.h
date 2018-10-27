@@ -7,12 +7,14 @@ class bolletta
 {
     public:
         bolletta() : first(0) {}
+        bolletta(const bolletta&);
         bool Vuota() const;
         void aggiungiTel(telefonata);
         void togliTel(telefonata);
         telefonata estraiPrima();
         int totalNodes() const;
         telefonata estraiInfo(int) const;
+        bolletta& operator=(const bolletta &);
 
 
     private:
@@ -25,6 +27,8 @@ class bolletta
                 nodo* next;
         };
         nodo* first;
+        static nodo* copia(nodo*);
+        static void distruggi(nodo*);
 };
 
 std::ostream& operator<<(std::ostream&, const bolletta&);

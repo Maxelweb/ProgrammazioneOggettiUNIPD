@@ -9,6 +9,23 @@ bolletta::nodo::nodo() : next(0) {}
 bolletta::nodo::nodo(const telefonata& t, nodo* n) :
     info(t), next(n) {}
 
+bolletta::nodo* bolletta::copia(nodo* p)
+{
+    if(!p) return 0;
+    else return new nodo(p->info, copia(p->next));
+}
+
+void bolletta::distruggi(nodo* p)
+{
+    if(p)
+    {
+        distruggi(p->next);
+        delete p;
+    }
+}
+
+bolletta::bolletta(const bolletta & b) :
+    first(copia(b.first)) {}
 
 bool bolletta::Vuota() const
 {
@@ -66,7 +83,7 @@ telefonata bolletta::estraiPrima()
     return aux;
 }
 
-// Ritorno il numero di telefonata nella bolletta.
+// Ritorno il numero di telefonate nella bolletta.
 //
 int bolletta::totalNodes() const
 {
@@ -85,7 +102,7 @@ int bolletta::totalNodes() const
 telefonata bolletta::estraiInfo(int i) const
 {
     nodo *current = first;
-    while(current && i>0)
+    while(current && i>0 && i<totalNodes())
     {
         current = current->next;
         i--;
@@ -98,26 +115,34 @@ telefonata bolletta::estraiInfo(int i) const
 //
 std::ostream& operator<<(std::ostream& os, const bolletta& b)
 {
-    os << "TELEFONATE IN BOLLETTA:" << std::endl;
+    os << endl <<"TELEFONATE IN BOLLETTA:" << endl;
 
     if(b.Vuota())
-        return os << "\t Nessuna telefonata trovata." << std::endl;
-
-
+        return os << "\t Nessuna telefonata trovata." << endl;
 
     int total = b.totalNodes();
 
     for(int i = 0; i < total; i++)
     {
         //b.estraiInfo(i);
-        os << '\t' << (i+1) << ") " << b.estraiInfo(i) << std::endl;
+        os << '\t' << (i+1) << ") " << b.estraiInfo(i) << endl;
     }
 
-    os << '\t' << "--------------------" << std::endl
-       << '\t' << "TELEFONATE TOTALI: " << total
+    os << "\t- TOTALE: " << total
        << std::endl;
-
 
     return os;
 }
 
+
+// Overloading operatore di assegnazione, per copia profonda
+//
+bolletta& bolletta::operator=(const bolletta& b)
+{
+    if(this != &b) // Controllo che a != b
+    {
+        distruggi(first); // Con a = b, dealloco a.
+        first = copia(b.first);
+    }
+    return *this;
+}
