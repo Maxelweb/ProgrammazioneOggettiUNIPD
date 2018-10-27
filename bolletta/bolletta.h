@@ -12,6 +12,7 @@ class bolletta
         void togliTel(telefonata);
         telefonata estraiPrima();
         int totalNodes() const;
+        telefonata estraiInfo(int) const;
 
 
     private:
@@ -26,6 +27,6 @@ class bolletta
         nodo* first;
 };
 
-std::ostream& operator<<(std::ostream&, bolletta);
+std::ostream& operator<<(std::ostream&, const bolletta&);
 
 #endif // BOLLETTA_H

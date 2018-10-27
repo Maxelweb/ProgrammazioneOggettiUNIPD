@@ -47,8 +47,9 @@ void bolletta::togliTel(telefonata t)
         else
         {
             prec->next = p->next;
-            delete p;
         }
+
+        delete p;
     }
 }
 
@@ -56,7 +57,7 @@ void bolletta::togliTel(telefonata t)
 //
 telefonata bolletta::estraiPrima()
 {
-    if(!first) return telefonata();
+   // if(!first) return telefonata();
 
     nodo *p = first;
     first = first->next;
@@ -76,27 +77,46 @@ int bolletta::totalNodes() const
         p = p->next;
         x++;
     }
-    delete p;
     return x;
+}
+
+// Estrai info telefonata i
+//
+telefonata bolletta::estraiInfo(int i) const
+{
+    nodo *current = first;
+    while(current && i>0)
+    {
+        current = current->next;
+        i--;
+    }
+    telefonata aux = current->info;
+    return aux;
 }
 
 // Overloading dell'operatore <<
 //
-std::ostream& operator<<(std::ostream& os, bolletta b1)
+std::ostream& operator<<(std::ostream& os, const bolletta& b)
 {
     os << "TELEFONATE IN BOLLETTA:" << std::endl;
 
-    bolletta b2 = b1;
-    int total = b2.totalNodes();
+    if(b.Vuota())
+        return os << "\t Nessuna telefonata trovata." << std::endl;
+
+
+
+    int total = b.totalNodes();
 
     for(int i = 0; i < total; i++)
     {
-        os << '\t' << (i+1) << ") " << b2.estraiPrima() << std::endl;
+        //b.estraiInfo(i);
+        os << '\t' << (i+1) << ") " << b.estraiInfo(i) << std::endl;
     }
 
     os << '\t' << "--------------------" << std::endl
        << '\t' << "TELEFONATE TOTALI: " << total
        << std::endl;
+
 
     return os;
 }
