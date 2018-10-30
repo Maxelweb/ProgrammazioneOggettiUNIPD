@@ -18,3 +18,5 @@ Esercizi di Programmazione a oggetti - 2018/2019 (UniPD)
 
 - __static__: Si utilizza quando l'azione del metodo è indipendente dall'oggetto di invocazione (ossia l'oggetto di invocazione non è necessario per la definizione del metodo).
 **Un campo dati si può dichiarare static all'interno della definizione della classe, ma va inizializzato fuori.**
+
+- __friend__: poichè una funzione esterna ad una classe non ha accesso ai campi dati privati relativi a quella classe è opportuno usare questo dichiaratore (all'interno della classe) per dichiarare una funzione amica. 
