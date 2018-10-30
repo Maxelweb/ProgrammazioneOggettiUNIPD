@@ -3,3 +3,4 @@
 *.o
 *.Release
 *.Debug
+build-*/
