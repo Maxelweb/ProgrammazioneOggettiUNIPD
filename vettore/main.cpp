@@ -16,8 +16,24 @@ Deve inoltre includere il
     - e la distruzione profonda.
 */
 
-#include<iostream>
+#include <iostream>
+#include "vettore.h"
 
 int main() {
-    std::cout << "foobar"<< std::endl;
+  vettore v1, v2(3), v3(5);
+  v1 = v2+v3;
+  v2.append(v2);
+  v3.append(v1);
+  v2.append(v3);
+  v2.append(v2);
+  std::cout << v1 << std::endl;
+  std::cout << v2 << std::endl;
+  std::cout << v3 << std::endl;
 }
+
+
+/* OUTPUT
+    v1 = [3,5] (size: 2)
+    v2 = [3,3,5,3,5,3,3,5,3,5] (size: 10)
+    v3 = [5,3,5] (size: 3)
+*/
